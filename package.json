@@ -1,0 +1,39 @@
+{
+  "name": "custom-extension",
+  "version": "0.0.0",
+  "description": "jsreport studio extension starter kit",
+  "keywords": [
+    "jsreport"
+  ],
+  "scripts": {
+    "build": "jsreport-studio-build",
+    "test": "standard",
+    "start": "jsreport-studio-start --httpPort 5488",
+    "prepublish": "jsreport-studio-build"
+  },
+  "standard": {
+    "ignore": [
+      "studio/main.js"
+    ],
+    "env": {
+      "node": true,
+      "mocha": true,
+      "browser": true
+    }
+  },
+  "license": "MIT",
+  "dependencies": {
+    "html-to-text": "8.1.0"
+  },
+  "author": "Jan Blaha",
+  "devDependencies": {
+    "@jsreport/studio-dev": "3.0.1",
+    "standard": "16.0.3"
+  },
+  "files": [
+    "lib",
+    "studio",
+    "index.js",
+    "jsreport.config.js"
+  ]
+}
