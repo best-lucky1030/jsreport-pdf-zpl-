@@ -34,6 +34,8 @@
     "lib",
     "studio",
     "index.js",
-    "jsreport.config.js"
+    "main.js",
+    "jsreport.config.js",
+    "worker.js"
   ]
 }
