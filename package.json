@@ -1,15 +1,46 @@
 {
-  "name": "custom-extension",
-  "version": "0.0.0",
-  "description": "jsreport studio extension starter kit",
+  "name": "@jsreport/jsreport-render-pdf",
+  "version": "3.1.0",
+  "description": "jsreport is rendering pdf and zpl",
   "keywords": [
-    "jsreport"
+    "jsreport",
+    "pdf"
+  ],
+  "license": "MIT",
+  "files": [
+    "lib",
+    "studio",
+    "index.js",
+    "jsreport.config.js"
   ],
   "scripts": {
     "build": "jsreport-studio-build",
-    "test": "standard",
+    "prepublish": "jsreport-studio-build",
+    "run": "npm run build && jsreport-studio-start --httpPort 5488 --run-only",
     "start": "jsreport-studio-start --httpPort 5488",
-    "prepublish": "jsreport-studio-build"
+    "test": "mocha test --timeout 15000 && standard"
+  },
+  "dependencies": {
+    "has-own-deep": "1.1.0",
+    "lodash.get": "4.4.2"
+  },
+  "devDependencies": {
+    "@jsreport/jsreport-core": "3.3.0",
+    "@jsreport/jsreport-handlebars": "3.0.0",
+    "@jsreport/studio-dev": "3.0.1",
+    "handlebars": "4.7.7",
+    "mocha": "6.1.4",
+    "parse-pdf": "1.0.0",
+    "ps-list": "7.2.0",
+    "puppeteer": "10.4.0",
+    "should": "13.2.3",
+    "standard": "16.0.4"
+  },
+  "peerDependencies": {
+    "puppeteer": ">=10.2.x"
+  },
+  "engines": {
+    "node": ">=16.11"
   },
   "standard": {
     "ignore": [
@@ -20,22 +51,5 @@
       "mocha": true,
       "browser": true
     }
-  },
-  "license": "MIT",
-  "dependencies": {
-    "html-to-text": "8.1.0"
-  },
-  "author": "Jan Blaha",
-  "devDependencies": {
-    "@jsreport/studio-dev": "3.0.1",
-    "standard": "16.0.3"
-  },
-  "files": [
-    "lib",
-    "studio",
-    "index.js",
-    "main.js",
-    "jsreport.config.js",
-    "worker.js"
-  ]
+  }
 }

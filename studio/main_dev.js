@@ -1,28 +1,14 @@
-import Properties from './Properties.js'
+import PdfProperties from './ChromePdfProperties.js'
+import ImageProperties from './ChromeImageProperties.js'
 import Studio from 'jsreport-studio'
+import ChromeEditor from './ChromeEditor.js'
+import * as Constants from './constants.js'
+import ChromeTitle from './ChromeTitle.js'
 
-// a custom property section added to the templates
-const Properties = (props) => (
-  <div className='properties-section'>
-    <div className='form-group'>
-      <label>custom content</label>
-      <input
-        type='text'
-        placeholder='a custom string'
-        value={props.entity.custom}
-        onChange={(v) => props.onChange({ custom: v.target.value, _id: props.entity._id })}
-      />
-    </div>
-  </div>
-)
+Studio.addPropertiesComponent('chrome pdf', PdfProperties, (entity) => entity.__entitySet === 'templates' && entity.recipe === 'chrome-pdf')
+Studio.addPropertiesComponent('chrome image', ImageProperties, (entity) => entity.__entitySet === 'templates' && entity.recipe === 'chrome-image')
 
-Studio.addPropertiesComponent('html-to-text', Properties, (entity) => entity.__entitySet === 'templates' && entity.recipe === 'html-to-text')
-
-Studio.initializeListeners.push(async () => {
-  console.log('Doing some async initialization')
-})
-
-Studio.readyListeners.push(async () => {
-  console.log('Studio is now rendered')
-  Studio.openModal(() => <span>Hello from the custom extension</span>)
-})
+Studio.addEditorComponent(Constants.CHROME_TAB_EDITOR, ChromeEditor)
+Studio.addTabTitleComponent(Constants.CHROME_TAB_TITLE, ChromeTitle)
+Studio.entityTreeIconResolvers.push((entity) => (entity.__entitySet === 'templates' && entity.recipe === 'chrome-pdf') ? 'fa-file-pdf-o' : null)
+Studio.entityTreeIconResolvers.push((entity) => (entity.__entitySet === 'templates' && entity.recipe === 'chrome-image') ? 'fa-file-image-o' : null)
